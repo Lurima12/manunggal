@@ -31,6 +31,7 @@
 - [ ] Runtime-verify versions 45–49 and 51.
 - [ ] Verify interactive colour sampling on versions 45–49/51.
 - [x] Initial commit on `main` with author identity taken from the connected GitHub account (`Lurima12`, GitHub noreply address); no invented values.
+- [x] Published to https://github.com/Lurima12/manunggal (public).
 
 ## Architecture & Conventions
 - **Entry points:** `extension.js`, `prefs.js`; source under `src/{core,data,services,ui}`.
@@ -54,7 +55,7 @@
 - The harness is a development tool and is not part of the installable extension.
 
 ## Exact Next Step
-Decide whether to publish: create a GitHub repository for `Lurima12` and push the
-initial commit (needs a remote plus credentials, or a Composio-driven file
-commit). Cross-version work (45–49, 51) stays blocked until those Shell versions
-are available.
+Cross-version work (45–49, 51) stays blocked until those Shell versions are
+available. Before future pushes, configure your own GitHub credential for
+`git@github.com:Lurima12/manunggal.git` (or switch the remote to HTTPS); the
+temporary deploy key used for the initial publish was revoked.
