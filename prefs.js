@@ -7,7 +7,7 @@ import Gtk from 'gi://Gtk';
 
 import {
     ExtensionPreferences,
-} from 'resource:///org/gnome/shell/extensions/prefs.js';
+} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import {EXTENSION_NAME, UUID} from './src/constants.js';
 

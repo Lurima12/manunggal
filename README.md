@@ -9,7 +9,7 @@ available for people who prefer a movable window.
 
 ## Status and verified versions
 
-Version **1.0.1**. Declared support is GNOME Shell **45–51**, but only **50.1**
+Version **1.0.2**. Declared support is GNOME Shell **45–51**, but only **50.1**
 has been run end to end. The other versions are covered by API review and
 defensive coding, not by runtime testing. Do not treat them as guaranteed.
 

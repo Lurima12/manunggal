@@ -33,6 +33,7 @@
 - [x] Initial commit on `main` with author identity taken from the connected GitHub account (`Lurima12`, GitHub noreply address); no invented values.
 - [x] Published to https://github.com/Lurima12/manunggal (public).
 - [x] `LICENSE` (GPL-2.0), metadata `url`/`version-name`, and README version aligned; `v1.0.1` release bundle includes the licence.
+- [x] Fixed preferences loading: `prefs.js` imported the non-existent lowercase `resource:///org/gnome/shell/extensions/prefs.js`; the Extensions app serves `resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js`. Added `tests/imports.test.mjs` as a regression guard.
 
 ## Architecture & Conventions
 - **Entry points:** `extension.js`, `prefs.js`; source under `src/{core,data,services,ui}`.
