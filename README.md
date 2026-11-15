@@ -9,7 +9,7 @@ available for people who prefer a movable window.
 
 ## Status and verified versions
 
-Version **0.1.0**. Declared support is GNOME Shell **45–51**, but only **50.1**
+Version **1.0.1**. Declared support is GNOME Shell **45–51**, but only **50.1**
 has been run end to end. The other versions are covered by API review and
 defensive coding, not by runtime testing. Do not treat them as guaranteed.
 
@@ -84,6 +84,7 @@ works too; remember to recompile the schema after editing the XML.
 gnome-extensions pack --force \
   --extra-source=src \
   --extra-source=schemas \
+  --extra-source=LICENSE \
   --out-dir=dist .
 ```
 
@@ -185,6 +186,6 @@ Repository layout and design decisions are documented in
 
 ## Licence
 
-The extension is licensed under **GPL-2.0-or-later**. Bundled Unicode data is
-covered by the Unicode licence in
+The extension is licensed under **GPL-2.0-or-later**; see [`LICENSE`](LICENSE).
+Bundled Unicode data is covered by the Unicode licence in
 [`src/data/LICENSE-UNICODE.txt`](src/data/LICENSE-UNICODE.txt).

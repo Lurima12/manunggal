@@ -32,6 +32,7 @@
 - [ ] Verify interactive colour sampling on versions 45–49/51.
 - [x] Initial commit on `main` with author identity taken from the connected GitHub account (`Lurima12`, GitHub noreply address); no invented values.
 - [x] Published to https://github.com/Lurima12/manunggal (public).
+- [x] `LICENSE` (GPL-2.0), metadata `url`/`version-name`, and README version aligned; `v1.0.1` release bundle includes the licence.
 
 ## Architecture & Conventions
 - **Entry points:** `extension.js`, `prefs.js`; source under `src/{core,data,services,ui}`.
