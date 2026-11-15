@@ -54,11 +54,11 @@ The 1.0 interface is English-only; no translation catalogs are shipped. See
 
 ### From a release bundle
 
-Download `manunggal@lurim412.shell-extension.zip` from the
+Download `manunggal@lurim412.zip` from the
 [latest release](https://github.com/Lurima12/manunggal/releases/latest), then:
 
 ```bash
-gnome-extensions install --force manunggal@lurim412.shell-extension.zip
+gnome-extensions install --force manunggal@lurim412.zip
 ```
 
 Log out and back in (Wayland cannot reload the Shell in place), then enable it:
@@ -88,8 +88,10 @@ gnome-extensions pack --force \
   --out-dir=dist .
 ```
 
-The archive is written to `dist/manunggal@lurim412.shell-extension.zip`.
-`gnome-extensions install` compiles the schema automatically.
+The archive is written to `dist/manunggal@lurim412.shell-extension.zip`; the
+GitHub release publishes the same archive under the shorter name
+`manunggal@lurim412.zip`. `gnome-extensions install` accepts either name and
+compiles the schema automatically.
 
 ## Use
 
