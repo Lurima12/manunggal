@@ -1,0 +1,7 @@
+{
+  "uuid": "mgtest@local",
+  "name": "Manunggal Test Harness",
+  "description": "Local-only harness for Manunggal.",
+  "shell-version": ["50"],
+  "version": 1
+}

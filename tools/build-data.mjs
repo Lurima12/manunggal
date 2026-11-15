@@ -1,0 +1,150 @@
+#!/usr/bin/env node
+// SPDX-License-Identifier: GPL-2.0-or-later
+//
+// Regenerates src/data/emojiData.js and src/data/symbolData.js.
+//
+// Emoji input:  https://unicode.org/Public/emoji/15.1/emoji-test.txt
+// Annotations:  CLDR (en), cldr-annotations-full/annotations.json
+//
+// Usage:
+//   node tools/build-data.mjs /path/to/emoji-test.txt /path/to/annotations.json
+//
+// The generated files are committed so building the extension needs no network
+// access. Emoji 15.1 is used deliberately: it is understood by the emoji font
+// shipped with every Shell version we target (45–51).
+
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const outDir = path.join(here, '..', 'src', 'data');
+
+const [, , emojiTestPath, annotationsPath] = process.argv;
+if (!emojiTestPath || !annotationsPath) {
+    console.error('usage: build-data.mjs <emoji-test.txt> <annotations.json>');
+    process.exit(2);
+}
+
+const GROUP_INFO = {
+    'Smileys & Emotion': {id: 'smileys', label: 'Smileys & Emotion', icon: 'face-smile-symbolic'},
+    'People & Body': {id: 'people', label: 'People & Body', icon: 'emoji-people-symbolic'},
+    'Animals & Nature': {id: 'nature', label: 'Animals & Nature', icon: 'emoji-nature-symbolic'},
+    'Food & Drink': {id: 'food', label: 'Food & Drink', icon: 'emoji-food-symbolic'},
+    'Travel & Places': {id: 'travel', label: 'Travel & Places', icon: 'emoji-travel-symbolic'},
+    'Activities': {id: 'activities', label: 'Activities', icon: 'emoji-activities-symbolic'},
+    'Objects': {id: 'objects', label: 'Objects', icon: 'emoji-objects-symbolic'},
+    'Symbols': {id: 'symbols', label: 'Symbols', icon: 'emoji-symbols-symbolic'},
+    'Flags': {id: 'flags', label: 'Flags', icon: 'emoji-flags-symbolic'},
+};
+
+const SKIN_TONES = new Set(['1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']);
+
+function titleCase(s) {
+    return s.length ? s[0].toUpperCase() + s.slice(1) : s;
+}
+
+function uniqueWords(list) {
+    const seen = new Set();
+    const out = [];
+    for (const raw of list) {
+        const word = String(raw).trim().toLowerCase();
+        if (!word || seen.has(word)) continue;
+        seen.add(word);
+        out.push(word);
+    }
+    return out;
+}
+
+function parseEmoji(text, annotations) {
+    const groups = [];
+    const entries = [];
+    const seen = new Set();
+    let group = null;
+    let subgroup = '';
+
+    for (const line of text.split('\n')) {
+        if (line.startsWith('# group:')) {
+            const name = line.slice('# group:'.length).trim();
+            group = GROUP_INFO[name] ?? null;
+            if (group) {
+                group.subgroups = [];
+                groups.push(group);
+            }
+            subgroup = '';
+            continue;
+        }
+        if (line.startsWith('# subgroup:')) {
+            subgroup = line.slice('# subgroup:'.length).trim();
+            if (group && !group.subgroups.includes(subgroup))
+                group.subgroups.push(subgroup);
+            continue;
+        }
+        if (!group || !line || line.startsWith('#'))
+            continue;
+
+        const m = line.match(/^([0-9A-F ]+);\s*([a-z-]+)\s*#\s*(\S+)\s+E\d+\.\d+\s+(.+)$/u);
+        if (!m) continue;
+        const [, codeText, status, char, name] = m;
+        if (status !== 'fully-qualified') continue;
+        const codes = codeText.trim().split(/\s+/u);
+        if (codes.some(c => SKIN_TONES.has(c))) continue;
+        if (seen.has(char)) continue;
+        seen.add(char);
+
+        // CLDR keys omit the emoji variation selector.
+        const annotation = annotations[char] ?? annotations[char.replace(/\uFE0F/gu, '')];
+        const words = annotation?.default ?? [];
+        const spoken = annotation?.tts?.[0] ?? name;
+        const displayName = spoken.toLowerCase();
+        const keywords = uniqueWords([
+            ...words,
+            ...name.split(/\s+/u),
+            ...spoken.split(/\s+/u),
+            subgroup.toLowerCase(),
+        ]).filter(w => w !== displayName);
+
+        entries.push({
+            char,
+            name: displayName,
+            keywords,
+            group: group.id,
+            subgroup,
+        });
+    }
+
+    return {groups, entries};
+}
+
+const emojiText = fs.readFileSync(emojiTestPath, 'utf8');
+const annotations = JSON.parse(fs.readFileSync(annotationsPath, 'utf8')).annotations.annotations;
+const {groups, entries} = parseEmoji(emojiText, annotations);
+
+// Compact tuple form: [char, name, keywords, groupIndex, subgroup]
+const groupIndex = new Map(groups.map((g, i) => [g.id, i]));
+const tuples = entries.map(e => [e.char, e.name, e.keywords, groupIndex.get(e.group), e.subgroup]);
+
+const esc = s => JSON.stringify(s);
+const groupLines = groups.map(g =>
+    `    {id: ${esc(g.id)}, label: ${esc(g.label)}, icon: ${esc(g.icon)}},`).join('\n');
+
+const emojiOut = `// SPDX-License-Identifier: GPL-2.0-or-later
+//
+// Generated by tools/build-data.mjs. Do not edit by hand.
+// Emoji data: Unicode Emoji 15.1 (https://www.unicode.org/emoji/charts/emoji-list.html)
+// Annotations: Unicode CLDR, English. See data/LICENSE-UNICODE.txt.
+//
+// Tuple layout: [character, short name, search keywords, group index, subgroup]
+
+export const EMOJI_GROUPS = [
+${groupLines}
+];
+
+export const EMOJI = [
+${tuples.map(t => `    ${JSON.stringify(t)},`).join('\n')}
+];
+`;
+
+fs.mkdirSync(outDir, {recursive: true});
+fs.writeFileSync(path.join(outDir, 'emojiData.js'), emojiOut);
+console.log(`emoji: ${entries.length} entries, ${groups.length} groups, ${(emojiOut.length / 1024).toFixed(0)} KiB`);

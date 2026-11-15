@@ -1,0 +1,993 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * Manunggal — panel menu, pickers and dialogs.
+ *
+ * Sizes are in em wherever the value should follow GNOME text scaling.
+ * Colours that need to work in both the light and the dark Shell theme use
+ * translucent greys; the accent is the Adwaita blue used by GNOME itself.
+ */
+
+/* --------------------------------------------------------------- shell menu */
+
+.manunggal-menu-content {
+    padding: 0;
+}
+
+.manunggal-view {
+    width: 27em;
+    padding: 10px 12px 8px 12px;
+}
+
+.manunggal-header {
+    min-height: 28px;
+}
+
+.manunggal-title {
+    font-weight: 700;
+    font-size: 1.15em;
+}
+
+.manunggal-private-label {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #3584e4;
+    margin-right: 4px;
+}
+
+.manunggal-header-button {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    margin-left: 4px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+}
+
+.manunggal-header-button:hover {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.manunggal-header-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-header-button.manunggal-private-on {
+    background-color: rgba(53, 132, 228, 0.22);
+    color: #3584e4;
+}
+
+/* ------------------------------------------------------------------ search */
+
+.manunggal-search-bar {
+    margin-top: 9px;
+}
+
+.manunggal-search-entry {
+    min-height: 30px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(127, 127, 127, 0.30);
+    background-color: rgba(127, 127, 127, 0.09);
+}
+
+.manunggal-search-entry:focus {
+    border-color: #3584e4;
+    background-color: rgba(127, 127, 127, 0.15);
+}
+
+.manunggal-search-icon {
+    icon-size: 16px;
+    margin-right: 4px;
+}
+
+.manunggal-scope-button {
+    margin-left: 6px;
+    padding: 4px 10px;
+    min-height: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    font-size: 0.82em;
+}
+
+.manunggal-scope-button:checked {
+    background-color: rgba(53, 132, 228, 0.25);
+    border-color: #3584e4;
+}
+
+.manunggal-scope-button:focus {
+    border-color: #3584e4;
+}
+
+/* -------------------------------------------------------------------- tabs */
+
+.manunggal-tab-bar {
+    margin-top: 8px;
+}
+
+.manunggal-tab-button {
+    padding: 5px 2px;
+    margin: 0 1px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+    font-size: 0.88em;
+}
+
+.manunggal-tab-button:hover {
+    background-color: rgba(127, 127, 127, 0.14);
+}
+
+.manunggal-tab-button:checked,
+.manunggal-tab-button.manunggal-tab-active {
+    background-color: rgba(53, 132, 228, 0.20);
+    color: #3584e4;
+}
+
+.manunggal-tab-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-tab-content {
+    spacing: 4px;
+}
+
+.manunggal-tab-icon {
+    icon-size: 15px;
+}
+
+.manunggal-tab-label {
+    font-weight: 500;
+}
+
+.manunggal-content {
+    margin-top: 7px;
+    min-height: 15em;
+}
+
+.manunggal-tab {
+    padding: 0;
+}
+
+/* ------------------------------------------------------------------- chips */
+
+.manunggal-chip-scroll {
+    max-height: 34px;
+    min-width: 0;
+}
+
+.manunggal-chips {
+    padding: 1px 0;
+}
+
+.manunggal-chip {
+    margin-right: 4px;
+    padding: 2px 8px;
+    min-height: 26px;
+    border-radius: 13px;
+    border: 1px solid transparent;
+    font-size: 0.8em;
+}
+
+.manunggal-chip:checked {
+    background-color: rgba(53, 132, 228, 0.22);
+    border-color: rgba(53, 132, 228, 0.55);
+}
+
+.manunggal-chip:hover {
+    background-color: rgba(127, 127, 127, 0.16);
+}
+
+.manunggal-chip:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-chip-content {
+    spacing: 4px;
+}
+
+.manunggal-chip-icon {
+    icon-size: 13px;
+}
+
+.manunggal-chip-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+/* ---------------------------------------------------------- clipboard rows */
+
+.manunggal-list-scroll {
+    padding: 2px 2px 0 2px;
+}
+
+.manunggal-list {
+    spacing: 8px;
+}
+
+/* One clipboard item: an outer card with a nested preview sheet. */
+.manunggal-card {
+    padding: 8px 9px 9px 9px;
+    margin: 0 1px;
+    border-radius: 14px;
+    border: 1px solid rgba(127, 127, 127, 0.18);
+    background-color: rgba(127, 127, 127, 0.055);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    color: inherit;
+}
+
+.manunggal-card:hover {
+    background-color: rgba(127, 127, 127, 0.10);
+    border-color: rgba(127, 127, 127, 0.28);
+}
+
+.manunggal-card:focus {
+    border-color: #3584e4;
+    background-color: rgba(53, 132, 228, 0.10);
+    box-shadow: inset 0 0 0 1px rgba(53, 132, 228, 0.40);
+}
+
+.manunggal-card-pinned {
+    border-color: rgba(53, 132, 228, 0.45);
+}
+
+.manunggal-card-body {
+    spacing: 6px;
+}
+
+.manunggal-card-header {
+    spacing: 6px;
+}
+
+.manunggal-card-icon {
+    icon-size: 16px;
+}
+
+.manunggal-card-kind {
+    font-weight: 600;
+    font-size: 0.84em;
+}
+
+.manunggal-card-time {
+    font-size: 0.76em;
+}
+
+.manunggal-card-badge {
+    font-size: 0.68em;
+    font-weight: 600;
+    color: #e01b24;
+    background-color: rgba(224, 27, 36, 0.12);
+    border-radius: 999px;
+    padding: 1px 6px;
+}
+
+.manunggal-card-pin {
+    color: #3584e4;
+}
+
+.manunggal-card-preview {
+    spacing: 9px;
+    padding: 7px 9px;
+    border-radius: 10px;
+    border: 1px solid rgba(127, 127, 127, 0.12);
+    background-color: rgba(127, 127, 127, 0.07);
+}
+
+.manunggal-card-accent {
+    width: 3px;
+    border-radius: 2px;
+}
+
+.manunggal-card-text {
+    font-size: 0.92em;
+}
+
+.manunggal-card-mono {
+    font-family: monospace;
+    font-size: 0.86em;
+}
+
+.manunggal-card-sub {
+    font-size: 0.76em;
+}
+
+.manunggal-card-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+}
+
+.manunggal-card-thumb {
+    border-radius: 8px;
+}
+
+.manunggal-card-info {
+    spacing: 1px;
+}
+
+.manunggal-card-actions {
+    spacing: 1px;
+}
+
+.manunggal-card-action {
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.manunggal-card-action:hover {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.manunggal-card-action:checked {
+    background-color: rgba(53, 132, 228, 0.28);
+    color: #3584e4;
+}
+
+.manunggal-card-action:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-menu-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+.manunggal-destructive {
+    color: #e01b24;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.manunggal-footer {
+    margin-top: 7px;
+    padding-top: 7px;
+    border-top: 1px solid rgba(127, 127, 127, 0.25);
+    min-height: 26px;
+}
+
+.manunggal-status {
+    font-size: 0.76em;
+}
+
+.manunggal-clear-button {
+    padding: 5px 18px;
+    min-height: 28px;
+    min-width: 72px;
+    border-radius: 999px;
+    border: 1px solid rgba(127, 127, 127, 0.22);
+    background-color: rgba(127, 127, 127, 0.10);
+    font-size: 0.82em;
+    font-weight: 600;
+}
+
+.manunggal-clear-button:hover {
+    background-color: rgba(224, 27, 36, 0.16);
+    border-color: rgba(224, 27, 36, 0.45);
+    color: #e01b24;
+}
+
+.manunggal-clear-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-clear-content {
+    spacing: 5px;
+}
+
+/* -------------------------------------------------------------- empty state */
+
+.manunggal-empty {
+    padding: 28px 12px;
+    spacing: 6px;
+}
+
+.manunggal-empty-icon {
+    icon-size: 32px;
+    margin-bottom: 2px;
+}
+
+.manunggal-empty-title {
+    font-weight: 600;
+    font-size: 0.98em;
+}
+
+.manunggal-empty-description {
+    font-size: 0.82em;
+    max-width: 23em;
+    text-align: center;
+}
+
+.manunggal-empty-action {
+    margin-top: 6px;
+    padding: 4px 12px;
+    border-radius: 7px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+}
+
+.manunggal-empty-action:focus {
+    border-color: #3584e4;
+}
+
+/* ------------------------------------------------------------------- toast */
+
+.manunggal-toast {
+    margin-top: 7px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.78);
+    color: #ffffff;
+    spacing: 8px;
+}
+
+.manunggal-toast-label {
+    font-size: 0.84em;
+}
+
+.manunggal-toast-action {
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #78aeed;
+    border: 1px solid transparent;
+}
+
+.manunggal-toast-action:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.manunggal-toast-action:focus {
+    border-color: #78aeed;
+}
+
+/* ------------------------------------------------------------------ glyphs */
+
+.manunggal-glyph-toolbar {
+    margin: 5px 1px 3px 1px;
+    min-height: 24px;
+}
+
+.manunggal-glyph-group-label {
+    font-size: 0.8em;
+}
+
+.manunggal-select-button {
+    padding: 2px 9px;
+    border-radius: 12px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    font-size: 0.78em;
+}
+
+.manunggal-select-button:checked {
+    background-color: rgba(53, 132, 228, 0.22);
+    border-color: #3584e4;
+}
+
+.manunggal-select-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-glyph-scroll {
+    padding: 1px 0;
+}
+
+.manunggal-glyph-grid {
+    padding: 0;
+}
+
+.manunggal-glyph-cell {
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+.manunggal-glyph-cell:hover {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.manunggal-glyph-cell:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-glyph-cell.manunggal-glyph-selected {
+    background-color: rgba(53, 132, 228, 0.30);
+    border-color: rgba(53, 132, 228, 0.80);
+}
+
+.manunggal-glyph {
+    font-size: 1.3em;
+    color: inherit;
+}
+
+.manunggal-glyph-badge {
+    font-size: 0.56em;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #3584e4;
+    border-radius: 7px;
+    padding: 0 3px;
+    margin: 1px;
+}
+
+.manunggal-glyph-size-small .manunggal-glyph-cell {
+    width: 1.9em;
+    height: 1.9em;
+    min-width: 1.9em;
+    min-height: 1.9em;
+}
+
+.manunggal-glyph-size-small .manunggal-glyph {
+    font-size: 1.05em;
+}
+
+.manunggal-glyph-size-medium .manunggal-glyph-cell {
+    width: 2.35em;
+    height: 2.35em;
+    min-width: 2.35em;
+    min-height: 2.35em;
+}
+
+.manunggal-glyph-size-large .manunggal-glyph-cell {
+    width: 2.9em;
+    height: 2.9em;
+    min-width: 2.9em;
+    min-height: 2.9em;
+}
+
+.manunggal-glyph-size-large .manunggal-glyph {
+    font-size: 1.6em;
+}
+
+.manunggal-glyph-footer {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(127, 127, 127, 0.25);
+    spacing: 5px;
+}
+
+.manunggal-glyph-count {
+    font-size: 0.78em;
+    font-weight: 600;
+}
+
+.manunggal-glyph-selection-preview {
+    font-size: 1.0em;
+}
+
+.manunggal-glyph-footer-button {
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    font-size: 0.8em;
+}
+
+.manunggal-glyph-footer-button.manunggal-suggested {
+    background-color: #3584e4;
+    border-color: #3584e4;
+    color: #ffffff;
+}
+
+.manunggal-glyph-footer-button:focus {
+    border-color: #3584e4;
+}
+
+/* ------------------------------------------------------------------- colour */
+
+.manunggal-color-content {
+    spacing: 8px;
+    padding: 1px 2px 8px 2px;
+}
+
+.manunggal-color-preview-row {
+    spacing: 12px;
+}
+
+.manunggal-color-preview {
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+    border: 1px solid rgba(127, 127, 127, 0.45);
+}
+
+.manunggal-color-values {
+    spacing: 2px;
+    padding-top: 2px;
+}
+
+.manunggal-color-big-value {
+    font-size: 1.18em;
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.manunggal-color-small-value {
+    font-size: 0.78em;
+    font-family: monospace;
+}
+
+.manunggal-primary-copy {
+    margin-top: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background-color: rgba(53, 132, 228, 0.22);
+    border: 1px solid rgba(53, 132, 228, 0.55);
+    font-size: 0.82em;
+    font-weight: 600;
+}
+
+.manunggal-primary-copy:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-color-formats {
+    spacing: 2px;
+}
+
+.manunggal-color-format-row {
+    padding: 3px 6px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    min-height: 28px;
+}
+
+.manunggal-color-format-row.manunggal-format-primary {
+    background-color: rgba(53, 132, 228, 0.14);
+}
+
+.manunggal-color-format-name {
+    width: 3.1em;
+    font-size: 0.76em;
+    font-weight: 700;
+}
+
+.manunggal-color-format-value {
+    font-family: monospace;
+    font-size: 0.86em;
+}
+
+.manunggal-color-copy {
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+}
+
+.manunggal-color-copy:hover {
+    background-color: rgba(127, 127, 127, 0.2);
+}
+
+.manunggal-color-copy:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-section-title {
+    font-size: 0.78em;
+    font-weight: 700;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.manunggal-color-swatches {
+    spacing: 2px;
+}
+
+.manunggal-swatch-flow {
+    spacing: 4px;
+}
+
+.manunggal-color-swatch {
+    width: 21px;
+    height: 21px;
+    min-width: 21px;
+    min-height: 21px;
+    border-radius: 5px;
+    border: 1px solid rgba(127, 127, 127, 0.5);
+}
+
+.manunggal-color-swatch:hover {
+    border-color: rgba(255, 255, 255, 0.75);
+}
+
+.manunggal-color-swatch:focus {
+    border-color: #ffffff;
+    border-width: 2px;
+}
+
+.manunggal-color-swatch.manunggal-swatch-current {
+    border-color: #ffffff;
+    border-width: 2px;
+}
+
+.manunggal-pick-row {
+    margin-top: 6px;
+}
+
+.manunggal-pick-button {
+    padding: 4px 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    font-size: 0.82em;
+}
+
+.manunggal-pick-button:hover {
+    background-color: rgba(127, 127, 127, 0.16);
+}
+
+.manunggal-pick-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-pick-content {
+    spacing: 6px;
+}
+
+.manunggal-sampling-error {
+    margin-top: 4px;
+    font-size: 0.76em;
+}
+
+.manunggal-advanced-toggle {
+    margin-top: 2px;
+    padding: 4px 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(127, 127, 127, 0.3);
+    font-size: 0.82em;
+}
+
+.manunggal-advanced-toggle:checked {
+    background-color: rgba(127, 127, 127, 0.16);
+}
+
+.manunggal-advanced-toggle:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-advanced-box {
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(127, 127, 127, 0.08);
+    spacing: 5px;
+}
+
+.manunggal-color-wheel {
+    width: 13em;
+    height: 13em;
+    min-width: 13em;
+    min-height: 13em;
+    border-radius: 8px;
+}
+
+.manunggal-advanced-row {
+    spacing: 5px;
+}
+
+.manunggal-field-label {
+    width: 2.6em;
+    font-size: 0.74em;
+}
+
+.manunggal-hex-entry,
+.manunggal-number-entry {
+    min-height: 26px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    background-color: rgba(127, 127, 127, 0.10);
+    font-family: monospace;
+    font-size: 0.84em;
+}
+
+.manunggal-hex-entry:focus,
+.manunggal-number-entry:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-advanced-hint {
+    font-size: 0.72em;
+    margin-top: 2px;
+}
+
+/* ------------------------------------------------------- colour picker overlay */
+
+.manunggal-color-picker-overlay {
+    background-color: transparent;
+}
+
+.manunggal-color-picker-preview {
+    padding: 8px;
+    border-radius: 9px;
+    background-color: rgba(0, 0, 0, 0.76);
+    color: #ffffff;
+    spacing: 9px;
+}
+
+.manunggal-color-picker-swatch {
+    width: 42px;
+    height: 42px;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.manunggal-color-picker-value {
+    font-family: monospace;
+    font-size: 1.02em;
+    font-weight: 700;
+}
+
+.manunggal-color-picker-subvalue {
+    font-family: monospace;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.manunggal-color-picker-hint {
+    padding: 6px 12px;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.70);
+    color: #ffffff;
+    font-size: 0.84em;
+}
+
+/* ----------------------------------------------------------- dialogs/editor */
+
+.manunggal-modal-overlay {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.manunggal-dialog {
+    width: 24em;
+    max-width: 34em;
+    padding: 16px;
+    border-radius: 12px;
+    spacing: 8px;
+}
+
+.manunggal-editor-dialog {
+    width: 28em;
+}
+
+.manunggal-dialog-title {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.manunggal-dialog-message {
+    font-size: 0.88em;
+}
+
+.manunggal-dialog-hint {
+    font-size: 0.76em;
+    margin-right: 6px;
+}
+
+.manunggal-dialog-error {
+    font-size: 0.78em;
+    color: #e01b24;
+}
+
+.manunggal-dialog-buttons {
+    margin-top: 8px;
+    spacing: 6px;
+}
+
+.manunggal-dialog-button {
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    font-size: 0.84em;
+}
+
+.manunggal-dialog-button:focus {
+    border-color: #3584e4;
+}
+
+.manunggal-dialog-button.manunggal-suggested {
+    background-color: #3584e4;
+    border-color: #3584e4;
+    color: #ffffff;
+}
+
+.manunggal-dialog-button.manunggal-destructive {
+    background-color: #e01b24;
+    border-color: #e01b24;
+    color: #ffffff;
+}
+
+.manunggal-editor-scroll {
+    min-height: 120px;
+    max-height: 260px;
+}
+
+.manunggal-editor-entry {
+    padding: 6px;
+    min-height: 110px;
+    border-radius: 7px;
+    border: 1px solid rgba(127, 127, 127, 0.35);
+    background-color: rgba(127, 127, 127, 0.10);
+    font-size: 0.9em;
+}
+
+.manunggal-editor-entry:focus {
+    border-color: #3584e4;
+}
+
+/* --------------------------------------------------------- layout variants */
+
+.manunggal-mode-compact .manunggal-card-text {
+    font-size: 0.86em;
+}
+
+.manunggal-mode-compact .manunggal-card {
+    padding: 6px 7px;
+    border-radius: 12px;
+}
+
+.manunggal-mode-compact .manunggal-glyph-toolbar {
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+.manunggal-density-compact .manunggal-card {
+    padding: 5px 7px;
+    margin: 0;
+    border-radius: 11px;
+}
+
+.manunggal-density-compact .manunggal-card-text {
+    font-size: 0.88em;
+}
+
+.manunggal-density-compact .manunggal-card-sub,
+.manunggal-density-compact .manunggal-card-time {
+    font-size: 0.72em;
+}
+
+.manunggal-density-compact .manunggal-chip {
+    min-height: 22px;
+    padding: 1px 7px;
+}
+
+/* --------------------------------------------------------- floating window */
+
+.manunggal-floating-window {
+    padding: 0;
+    border-radius: 14px;
+    border: 1px solid rgba(127, 127, 127, 0.28);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
+}
+
+.manunggal-floating-header {
+    min-height: 44px;
+    padding: 4px 6px 4px 10px;
+    spacing: 4px;
+    border-bottom: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+.manunggal-floating-drag {
+    spacing: 8px;
+    padding-left: 2px;
+}
+
+.manunggal-floating-icon {
+    icon-size: 16px;
+}
+
+.manunggal-floating-title {
+    font-weight: 700;
+    font-size: 0.95em;
+}
+
+.manunggal-floating-button {
+    padding: 4px;
+}
+
+.manunggal-floating-body {
+    padding: 0;
+}

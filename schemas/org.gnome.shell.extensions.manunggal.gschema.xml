@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+<schemalist gettext-domain="manunggal@lurim412">
+  <schema id="org.gnome.shell.extensions.manunggal" path="/org/gnome/shell/extensions/manunggal/">
+
+    <!-- General -->
+    <key name="toggle-shortcut" type="as">
+      <default>['&lt;Super&gt;&lt;Shift&gt;v']</default>
+      <summary>Global shortcut</summary>
+      <description>Key combinations that open Manunggal. At least one modifier is required. Stored as an array because GNOME Shell's keybinding API reads a string array.</description>
+    </key>
+    <key name="open-mode" type="s">
+      <default>'menu'</default>
+      <summary>Presentation</summary>
+      <description>Either 'menu' (panel popup menu) or 'floating' (movable overlay).</description>
+    </key>
+    <key name="remember-last-tab" type="b">
+      <default>true</default>
+      <summary>Remember the last tab</summary>
+    </key>
+    <key name="last-tab" type="s">
+      <default>'clipboard'</default>
+      <summary>Last used tab</summary>
+    </key>
+    <key name="close-after-copy" type="b">
+      <default>true</default>
+      <summary>Close after copying</summary>
+      <description>Close the menu or floating window after an item is copied.</description>
+    </key>
+    <key name="first-run" type="b">
+      <default>true</default>
+      <summary>Show the first-run hint</summary>
+    </key>
+    <key name="clear-history-request" type="i">
+      <default>0</default>
+      <summary>Clear-history request counter</summary>
+      <description>Incremented by Preferences to ask a running extension to clear its in-memory history.</description>
+    </key>
+
+    <!-- Layout -->
+    <key name="layout-mode" type="s">
+      <default>'detailed'</default>
+      <summary>Layout mode</summary>
+      <description>One of 'detailed', 'compact' or 'custom'.</description>
+    </key>
+    <key name="view-width" type="i">
+      <range min="0" max="600"/>
+      <default>0</default>
+      <summary>Menu width</summary>
+      <description>0 uses the automatic width (27em); otherwise a width in CSS pixels.</description>
+    </key>
+    <key name="custom-preview-lines" type="i">
+      <range min="1" max="4"/>
+      <default>2</default>
+      <summary>Preview lines in Custom mode</summary>
+    </key>
+    <key name="custom-show-meta" type="b">
+      <default>true</default>
+      <summary>Show metadata in Custom mode</summary>
+    </key>
+    <key name="custom-show-actions" type="s">
+      <default>'hover'</default>
+      <summary>Row actions in Custom mode</summary>
+      <description>One of 'hover' (show on hover and focus), 'always' or 'menu'.</description>
+    </key>
+    <key name="custom-tab-labels" type="b">
+      <default>true</default>
+      <summary>Show tab labels in Custom mode</summary>
+    </key>
+    <key name="custom-density" type="s">
+      <default>'comfortable'</default>
+      <summary>Density in Custom mode</summary>
+      <description>One of 'comfortable' or 'compact'.</description>
+    </key>
+    <key name="custom-glyph-size" type="s">
+      <default>'medium'</default>
+      <summary>Emoji and symbol cell size in Custom mode</summary>
+      <description>One of 'small', 'medium' or 'large'.</description>
+    </key>
+    <key name="custom-show-chips" type="b">
+      <default>true</default>
+      <summary>Show category chips in Custom mode</summary>
+    </key>
+    <key name="search-scope" type="s">
+      <default>'tab'</default>
+      <summary>Search scope</summary>
+      <description>One of 'tab' or 'all'.</description>
+    </key>
+
+    <!-- Clipboard -->
+    <key name="clipboard-enabled" type="b">
+      <default>true</default>
+      <summary>Capture clipboard content</summary>
+    </key>
+    <key name="capture-images" type="b">
+      <default>true</default>
+      <summary>Capture images</summary>
+    </key>
+    <key name="max-items" type="i">
+      <range min="10" max="500"/>
+      <default>100</default>
+      <summary>Maximum number of history entries</summary>
+    </key>
+    <key name="retention-days" type="i">
+      <range min="0" max="3650"/>
+      <default>7</default>
+      <summary>Retention period in days</summary>
+      <description>0 keeps entries until they are removed by the item limit.</description>
+    </key>
+    <key name="max-text-bytes" type="i">
+      <range min="4096" max="1048576"/>
+      <default>262144</default>
+      <summary>Maximum text entry size in bytes</summary>
+    </key>
+    <key name="max-image-bytes" type="i">
+      <range min="262144" max="20971520"/>
+      <default>5242880</default>
+      <summary>Maximum image entry size in bytes</summary>
+    </key>
+    <key name="persist-history" type="b">
+      <default>true</default>
+      <summary>Persist history across sessions</summary>
+    </key>
+    <key name="ignore-password-manager" type="b">
+      <default>true</default>
+      <summary>Ignore password-manager content</summary>
+      <description>Skip clipboard content that advertises the x-kde-passwordManagerHint MIME type. Best effort only.</description>
+    </key>
+    <key name="excluded-apps" type="as">
+      <default>[]</default>
+      <summary>Application WM classes to ignore</summary>
+    </key>
+    <key name="sync-primary" type="b">
+      <default>false</default>
+      <summary>Also write copied text to the primary selection</summary>
+    </key>
+    <key name="clear-on-lock" type="b">
+      <default>false</default>
+      <summary>Clear history when the screen locks</summary>
+    </key>
+    <key name="sensitive-persist" type="b">
+      <default>false</default>
+      <summary>Persist entries marked sensitive</summary>
+    </key>
+    <key name="confirm-clear" type="b">
+      <default>true</default>
+      <summary>Confirm before clearing history</summary>
+    </key>
+    <key name="detect-categories" type="b">
+      <default>true</default>
+      <summary>Detect color, emoji and code categories</summary>
+    </key>
+    <key name="private-mode" type="b">
+      <default>false</default>
+      <summary>Private mode</summary>
+      <description>Runtime state; only persisted when privacy-remember is enabled.</description>
+    </key>
+    <key name="privacy-remember" type="b">
+      <default>false</default>
+      <summary>Keep private mode after a Shell restart</summary>
+    </key>
+
+    <!-- Floating window -->
+    <key name="floating-width" type="i">
+      <range min="300" max="1200"/>
+      <default>420</default>
+      <summary>Floating window width in CSS pixels</summary>
+    </key>
+    <key name="floating-height" type="i">
+      <range min="320" max="1200"/>
+      <default>560</default>
+      <summary>Floating window height in CSS pixels</summary>
+    </key>
+    <key name="floating-x" type="i">
+      <range min="-1" max="100000"/>
+      <default>-1</default>
+      <summary>Floating window X position</summary>
+      <description>-1 centres the window on its monitor.</description>
+    </key>
+    <key name="floating-y" type="i">
+      <range min="-1" max="100000"/>
+      <default>-1</default>
+      <summary>Floating window Y position</summary>
+    </key>
+    <key name="floating-keep-above" type="b">
+      <default>true</default>
+      <summary>Keep the floating window above other windows</summary>
+    </key>
+    <key name="floating-all-workspaces" type="b">
+      <default>true</default>
+      <summary>Show the floating window on every workspace</summary>
+    </key>
+    <key name="floating-close-outside" type="b">
+      <default>false</default>
+      <summary>Close the floating window when clicking outside</summary>
+    </key>
+
+    <!-- Pickers -->
+    <key name="emoji-separator" type="s">
+      <default>'none'</default>
+      <summary>Separator for multi-emoji copies</summary>
+      <description>One of 'none' or 'space'.</description>
+    </key>
+    <key name="symbol-separator" type="s">
+      <default>'space'</default>
+      <summary>Separator for multi-symbol copies</summary>
+      <description>One of 'none' or 'space'.</description>
+    </key>
+    <key name="recent-emoji" type="as">
+      <default>[]</default>
+      <summary>Recently used emoji</summary>
+    </key>
+    <key name="recent-symbols" type="as">
+      <default>[]</default>
+      <summary>Recently used symbols</summary>
+    </key>
+
+    <!-- Colour -->
+    <key name="color-format" type="s">
+      <default>'hex'</default>
+      <summary>Preferred copy format</summary>
+      <description>One of 'hex', 'rgb' or 'rgba'.</description>
+    </key>
+    <key name="hex-uppercase" type="b">
+      <default>true</default>
+      <summary>Uppercase hex values</summary>
+    </key>
+    <key name="recent-colors" type="as">
+      <default>[]</default>
+      <summary>Recently used colours</summary>
+    </key>
+    <key name="color-sampling-enabled" type="b">
+      <default>true</default>
+      <summary>Allow picking a colour from the screen</summary>
+      <description>Uses the compositor's native single-pixel picker. Never captures a screenshot.</description>
+    </key>
+
+  </schema>
+</schemalist>
