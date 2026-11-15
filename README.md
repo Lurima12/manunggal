@@ -54,6 +54,9 @@ The 1.0 interface is English-only; no translation catalogs are shipped. See
 
 ### From a release bundle
 
+Download `manunggal@lurim412.shell-extension.zip` from the
+[latest release](https://github.com/Lurima12/manunggal/releases/latest), then:
+
 ```bash
 gnome-extensions install --force manunggal@lurim412.shell-extension.zip
 ```
