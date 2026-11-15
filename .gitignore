@@ -24,3 +24,14 @@ Thumbs.db
 
 # Local harness output
 tools/harness/out/
+
+# Added by cleanup-for-github
+dist/
+*.shell-extension.zip
+*.flatpak
+*.AppImage
+*.deb
+*.rpm
+*.snap
+.flatpak-builder/
+build-dir/
